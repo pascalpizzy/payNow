@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row d-flex header-area">
                     <nav class="navbar d-flex navbar-expand-lg navbar-dark">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/">
                             <img src="assets/img/logo.png" class="logo" alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

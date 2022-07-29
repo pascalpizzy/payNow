@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\FlutterPayment;
 
 class UserdashboardController extends Controller
 {
-    function __construct(User $user)
+    function __construct(User $user, FlutterPayment $flutterPayment)
     {
         $this->user = $user;
+        $this->flutterPayment = $flutterPayment;
     }
 
     /**
@@ -20,11 +22,25 @@ class UserdashboardController extends Controller
      */
     public function index()
     {
+        
+
+
         $loggedInUser = $this->user::where([
             ['unique_id', '=',auth()->user()->unique_id]
         ])->first();
 
-        return view('userDashboard', ['loggedInUser' => $loggedInUser]);
+        $userTransactions = $this->flutterPayment::where([
+            ['user_unique_id', '=', auth()->user()->unique_id]
+        ])->get();
+
+
+        $userTransactionsTotal = $this->flutterPayment::where([
+            ['user_unique_id', '=', auth()->user()->unique_id]
+        ])->sum('amount');
+
+        
+
+        return view('userDashboard', ['loggedInUser' => $loggedInUser, 'userTransactions' => $userTransactions, 'userTransactionsTotal'=> $userTransactionsTotal]);
     }
 
     /**

@@ -3,18 +3,10 @@
 
 
 <!-- Mirrored from intez-html.vercel.app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Jul 2022 12:50:55 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Intez</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
+@extends('layouts.dashBoardMain')
 
+
+@section('contents')
 <body class="dashboard">
 
 <div id="preloader">
@@ -32,7 +24,7 @@
           <div class="col-xxl-12">
              <div class="header-content">
                 <div class="header-left">
-                   <div class="brand-logo"><a class="mini-logo" href="index-2.html"><img src="images/logoi.png" alt="" width="40"></a></div>
+                   <div class="brand-logo"><a class="mini-logo" href="/"><img src="images/logoi.png" alt="" width="40"></a></div>
                    <div class="search">
                       <form action="#">
                          <div class="input-group"><input type="text" class="form-control" placeholder="Search Here"><span class="input-group-text"><i class="ri-search-line"></i></span></div>
@@ -88,6 +80,7 @@
                          </div>
                       </div>
                    </div>
+                   
                    <div class="dropdown profile_log dropdown">
                       <div data-toggle="dropdown" aria-haspopup="true" class="" aria-expanded="false">
                          <div class="user icon-menu active"><span><i class="ri-user-line"></i></span></div>
@@ -97,9 +90,11 @@
                             <div class="user">
                                <span class="thumb"><img src="images/profile/3.png" alt=""></span>
                                <div class="user-info">
-                                  <h5>Jannatul Maowa</h5>
-                                  <span>Intez.inc@gmail.com</span>
+                                  <h5>{{ $loggedInUser->name }}</h5>
+                                  <span>{{ $loggedInUser->email }}</span>
                                </div>
+
+                               
                             </div>
                          </div>
                          <a class="dropdown-item" href="profile.html"><span><i class="ri-user-line"></i></span>Profile</a>
@@ -118,7 +113,7 @@
  </div>
 
     <div class="sidebar">
-    <div class="brand-logo"><a class="full-logo" href="index-2.html"><img src="images/logoi.png" alt="" width="30"></a></div>
+    <div class="brand-logo"><a class="full-logo" href="/"><img src="images/logoi.png" alt="" width="30"></a></div>
     <div class="menu">
         <ul>
             <li><a href="index.html">
@@ -162,7 +157,7 @@
                     <div class="col-xl-4">
                         <div class="page-title-content">
                             <h3>Welcome {{ $loggedInUser->name }}</h3>
-                            <p class="mb-2">Welcome Intez Dashboard</p>
+                            <p class="mb-2">your unique ID is || Paynow-{{ $loggedInUser->unique_id }}</p>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -175,7 +170,7 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Stats</h4>
+                            <h4 class="card-title">Account Statistics</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -184,8 +179,8 @@
                                         <div class="widget-icon me-3 bg-primary"><span><i
                                                     class="ri-wallet-line"></i></span></div>
                                         <div class="widget-content">
-                                            <h3>432568</h3>
-                                            <p>Last Balance</p>
+                                            <h3>{{ $loggedInUser->balance }}.00</h3>
+                                            <p>Flutterwave Balance</p>
                                         </div>
                                     </div>
                                 </div>
@@ -195,27 +190,26 @@
                                                     class="ri-wallet-2-line"></i></span></div>
                                         <div class="widget-content">
                                             <h3>245860</h3>
-                                            <p>Hold Balance</p>
+                                            <p>Paystack Balance</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                     <div class="stat-widget d-flex align-items-center">
-                                        <div class="widget-icon me-3 bg-success"><span><i
-                                                    class="ri-wallet-3-line"></i></span></div>
-                                        <div class="widget-content">
-                                            <h3>25.35</h3>
-                                            <p>Current Rate</p>
+                                     
+                                        <div class="widget-content balance-stats active">
+                                            <a href="/payment-page"><h3>Add Money</h3></a>
+                                            <p>flutter </p>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                     <div class="stat-widget d-flex align-items-center">
-                                        <div class="widget-icon me-3 bg-danger"><span><i
-                                                    class="ri-wallet-3-line"></i></span></div>
-                                        <div class="widget-content">
-                                            <h3>22.56</h3>
-                                            <p>Bounce Rate</p>
+                                        
+                                        <div class="widget-content balance-stats active">
+                                           <a href="/paystack_payment"><h3>Add Money</h3></a>
+                                            <p>paystack </p>
                                         </div>
                                     </div>
                                 </div>
@@ -278,6 +272,49 @@
                         </div>
                     </div>
                 </div> --}}
+              
+                <div class=" col-xxl-4 col-xl-4 col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Total Balance Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="total-balance">
+                                        <p style="color: rgb(3, 194, 98)">Total Balance including pending and successful payment</p>
+                                        <h2>#{{ $userTransactionsTotal }}.00</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="balance-stats active">
+                                        <p>Last Month</p>
+                                        <h3>$</h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="balance-stats">
+                                        <p>Expenses</p>
+                                        <h3>$</h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="balance-stats">
+                                        <p>Taxes</p>
+                                        <h3>$</h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="balance-stats">
+                                        <p>Debt</p>
+                                        <h3>$</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-12">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12">
@@ -293,7 +330,7 @@
                                     <h6>9875</h6>
                                 </div>
                                 <div class="cc-holder-exp">
-                                    <h5>Saiful Islam</h5>
+                                    <h5>{{ $loggedInUser->name }}</h5>
                                     <div class="exp"><span>EXP:</span><strong>12/21</strong></div>
                                 </div>
                             </div>
@@ -311,49 +348,8 @@
                                     <h6>9875</h6>
                                 </div>
                                 <div class="cc-holder-exp">
-                                    <h5>Saiful Islam</h5>
+                                    <h5>{{ $loggedInUser->name }}</h5>
                                     <div class="exp"><span>EXP:</span><strong>12/21</strong></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-xxl-4 col-xl-4 col-lg-6 col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Balance Details</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="total-balance">
-                                        <p>Total Balance</p>
-                                        <h2>$221,478</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="balance-stats active">
-                                        <p>Last Month</p>
-                                        <h3>$42,678</h3>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="balance-stats">
-                                        <p>Expenses</p>
-                                        <h3>$1,798</h3>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="balance-stats">
-                                        <p>Taxes</p>
-                                        <h3>$255.25</h3>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="balance-stats">
-                                        <p>Debt</p>
-                                        <h3>$365,478</h3>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -377,169 +373,50 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="col-xl-4 col-lg-6 col-md-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Transaction History</h4>
                             <a href="#">See more</a>
                         </div>
                         <div class="card-body">
+                            
                             <div class="invoice-content">
+                                
                                 <ul>
+                                    @foreach ($userTransactions as $userTransaction )
+
+                                   
                                     <li class="d-flex justify-content-between active">
+                                        
                                         <div class="d-flex align-items-center">
-                                            <div class="invoice-user-img me-3"><img src="images/avatar/1.jpg" alt=""
-                                                    width="50"></div>
+                                          
+                                            {{-- <div class="invoice-user-img me-3"><img src="images/avatar/1.jpg" alt=""
+                                                    width="50"></div> --}}
                                             <div class="invoice-info">
-                                                <h5 class="mb-0">Terry P. Camacho</h5>
-                                                <p>5 january 2021 at 10.15 pm</p>
+                                                <h5 class="mb-0">{{ $userTransaction->amount }}</h5>
+                                                <p>{{ $userTransaction->created_at }}</p>
                                             </div>
                                         </div>
                                         <div class="text-end">
-                                            <h5 class="mb-2">+450.00</h5>
-                                            <span class=" text-white bg-success">Paid</span>
+                                            <h5 class="mb-2">{{ $userTransaction->unique_id }}</h5>
+                                            <span class=" text-white bg-danger">{{ $userTransaction->status }}</span>
+
                                         </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="invoice-user-img me-3"><img src="images/avatar/2.jpg" alt=""
-                                                    width="50"></div>
-                                            <div class="invoice-info">
-                                                <h5 class="mb-0">John L. Foster</h5>
-                                                <p>5 january 2021 at 10.15 pm</p>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <h5 class="mb-2">+450.00</h5>
-                                            <span class=" text-white bg-warning">Due</span>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="invoice-user-img me-3"><img src="images/avatar/3.jpg" alt=""
-                                                    width="50"></div>
-                                            <div class="invoice-info">
-                                                <h5 class="mb-0">John C. Adams</h5>
-                                                <p>5 january 2021 at 10.15 pm</p>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <h5 class="mb-2">+450.00</h5>
-                                            <span class=" text-white bg-danger">Cancel</span>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="invoice-user-img me-3"><img src="images/avatar/4.jpg" alt=""
-                                                    width="50"></div>
-                                            <div class="invoice-info">
-                                                <h5 class="mb-0">Weston P. Thomas</h5>
-                                                <p>5 january 2021 at 10.15 pm</p>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <h5 class="mb-2">+450.00</h5>
-                                            <span class=" text-white bg-success">Paid</span>
-                                        </div>
-                                    </li>
+                                        
+                                    </li>   
+                                    @endforeach                                     
+                                    
+                                   
                                 </ul>
+                              
+                                 
                             </div>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Goals Budget</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="budget-content">
-                                <ul>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-grow-2">
-                                            <div class="budget-icon me-3 mt-1"><img src="images/social/facebook.png"
-                                                    alt="" width="40"></div>
-                                            <div class="budget-info flex-grow-2 me-3">
-                                                <div class="d-flex justify-content-between mb-1">
-                                                    <h5 class="mb-1">Facebook Ads</h5>
-                                                    <p class="mb-0"><strong>75 </strong>/ 100</p>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width: 75%;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-grow-2">
-                                            <div class="budget-icon me-3 mt-1"><img src="images/social/youtube.png"
-                                                    alt="" width="40"></div>
-                                            <div class="budget-info flex-grow-2 me-3">
-                                                <div class="d-flex justify-content-between mb-1">
-                                                    <h5 class="mb-1">Youtube Premium</h5>
-                                                    <p class="mb-0"><strong>25 </strong>/ 100</p>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar"
-                                                        style="width: 25%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-grow-2">
-                                            <div class="budget-icon me-3 mt-1"><img src="images/social/spotify.png"
-                                                    alt="" width="40"></div>
-                                            <div class="budget-info flex-grow-2 me-3">
-                                                <div class="d-flex justify-content-between mb-1">
-                                                    <h5 class="mb-1">Spotify Music</h5>
-                                                    <p class="mb-0"><strong>50 </strong>/ 100</p>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-info" role="progressbar"
-                                                        style="width: 50%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-grow-2">
-                                            <div class="budget-icon me-3 mt-1"><img src="images/social/skype.png"
-                                                    alt="" width="40"></div>
-                                            <div class="budget-info flex-grow-2 me-3">
-                                                <div class="d-flex justify-content-between mb-1">
-                                                    <h5 class="mb-1">Skype Premium</h5>
-                                                    <p class="mb-0"><strong>45 </strong>/ 100</p>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar"
-                                                        style="width: 45%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex flex-grow-2">
-                                            <div class="budget-icon me-3 mt-1"><img src="images/social/envato.png"
-                                                    alt="" width="40"></div>
-                                            <div class="budget-info flex-grow-2 me-3">
-                                                <div class="d-flex justify-content-between mb-1">
-                                                    <h5 class="mb-1">Envato Element</h5>
-                                                    <p class="mb-0"><strong>35 </strong>/ 100</p>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-purple" role="progressbar"
-                                                        style="width: 35%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -548,45 +425,7 @@
 
 </div>
 
-
-
-
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-<script src="vendor/chartjs/chartjs.js"></script>
-
-
-
-<script src="js/plugins/chartjs-line-init.js"></script>
-
-
-
-
-<script src="js/plugins/chartjs-donut.js"></script>
-
-
-
-
-
-
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="js/plugins/perfect-scrollbar-init.js"></script>
-
-
-
-<script src="vendor/circle-progress/circle-progress.min.js"></script>
-<script src="js/plugins/circle-progress-init.js"></script>
-
-
-
-
-
-
-
-<script src="js/scripts.js"></script>
-
+@endsection
 
 </body>
 
