@@ -244,7 +244,7 @@ class PaymentController extends Controller
 
     public function adminIndex(){
 
-        $allPayment = $this->flutterPayment::all();
+        $allPayment = $this->flutterPayment::orderBy('id', 'desc')->get();
         return view('/admin.adminDashboard', ['allPayment'=>$allPayment]);
     }
 }

@@ -31,7 +31,7 @@ class UserdashboardController extends Controller
 
         $userTransactions = $this->flutterPayment::where([
             ['user_unique_id', '=', auth()->user()->unique_id]
-        ])->get();
+        ])->orderBy('id', 'desc')->get();
 
 
         $userTransactionsTotal = $this->flutterPayment::where([
