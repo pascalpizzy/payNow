@@ -7,8 +7,8 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6 col-md-8 cus-order d-flex justify-content-md-start justify-content-center">
                         <div class="left-area">
-                            <p class="mdr">PAYLIO © 2022. ALL RIGHTS RESERVED. <span>|</span> Designed by
-                                <a href="https://themeforest.net/user/pixelaxis">Pixelasis</a>
+                            <p class="mdr">PAYNOW © 2022. ALL RIGHTS RESERVED. <span>|</span> Designed by
+                                <a href="https://github.com/pascalpizzy">PASCAL</a>
                             </p>
                         </div>
                     </div>
