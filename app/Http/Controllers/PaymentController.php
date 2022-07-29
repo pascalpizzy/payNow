@@ -8,6 +8,7 @@ use App\Models\FlutterPayment;
 use App\Models\PaystackPayment;
 use App\Traits\Generics;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -170,7 +171,9 @@ class PaymentController extends Controller
         
 
     public function paystackIndex(){
-        return view('/paystackPayment');
+
+        $user = Auth()->user();
+        return view('/paystackPayment', ['user'=>$user]);
     }
 
     public function verify_paystack_payment($reference){
@@ -237,5 +240,11 @@ class PaymentController extends Controller
         
         // Do something (that doesn't take too long) with the payload
         return response(200);
+    }
+
+    public function adminIndex(){
+
+        $allPayment = $this->flutterPayment::all();
+        return view('/admin.adminDashboard', ['allPayment'=>$allPayment]);
     }
 }

@@ -394,7 +394,7 @@
                                             {{-- <div class="invoice-user-img me-3"><img src="images/avatar/1.jpg" alt=""
                                                     width="50"></div> --}}
                                             <div class="invoice-info">
-                                                <h5 class="mb-0">{{ $userTransaction->amount }}</h5>
+                                                <h5 class="mb-0">N{{ $userTransaction->amount }}</h5>
                                                 <p>{{ $userTransaction->created_at }}</p>
                                             </div>
                                         </div>

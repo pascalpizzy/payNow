@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Intez</title>
+    <title>Paylio</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -28,7 +28,7 @@
         <div class="row justify-content-center h-100 align-items-center">
             <div class="col-xl-5 col-md-6">
                 <div class="mini-logo text-center my-4">
-                    <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    <a href="index.html"><img src="images/logo1.png" alt=""></a>
                     <h4 class="card-title mt-5">Create your account</h4>
                 </div>
                 <div class="auth-form card">

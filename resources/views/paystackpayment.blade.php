@@ -25,7 +25,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" name="email" id="email-address" required class="form-control"/>
+                <input value="{{ $user->email }}" disabled type="email" name="email" id="email-address" required class="form-control"/>
               </div>
             </div>
             

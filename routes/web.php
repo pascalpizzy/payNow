@@ -34,6 +34,8 @@ Route::get('/paystack_payment', [PaymentController::class, 'paystackIndex'])->na
 
 Route::get('/verify-paystack-payment/{reference}', [PaymentController::class, 'verify_paystack_payment'])->name('verify_paystackPayment');
 
+Route::get('/adminIndex', [PaymentController::class, 'adminIndex'])->name('adminIndex');
+
 
 
 Route::post('/flw-webhook', [PaymentController::class, 'webHookProcessor'])->name('flw-webhook');

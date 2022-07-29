@@ -101,6 +101,7 @@
       amount:amount,
       currency: "NGN",
       payment_options:" ",
+      redirect_url:"/",
       customer: {
         email:email,
         phone_number:number,
